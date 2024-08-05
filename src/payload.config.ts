@@ -8,15 +8,20 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Admins } from './collections/Admin'
+import { Channels } from './collections/Channels'
+import { Videos } from './collections/Videos'
+import { Comments } from './collections/Comments'
+import { Subscribers } from './collections/Subscribers'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
-    user: Users.slug,
+    user: Admins.slug,
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Admins, Channels, Videos, Comments, Subscribers],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

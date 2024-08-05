@@ -1,4 +1,5 @@
 import { hasPermission } from '@/access/hasPermission'
+import { amISubscribingToChannel } from '@/hooks/beforeReadChannels'
 import type { CollectionConfig } from 'payload'
 
 export const Channels: CollectionConfig = {
@@ -10,7 +11,9 @@ export const Channels: CollectionConfig = {
     read: () => true,
     update: hasPermission,
   },
-  hooks: {},
+  hooks: {
+    beforeRead: [amISubscribingToChannel],
+  },
   fields: [
     {
       type: 'text',
